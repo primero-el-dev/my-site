@@ -1,0 +1,29 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Made in pure HTML and CSS (SASS)",
+  "main": "js/main.js",
+  "scripts": {
+    "test": "test",
+    "scss": "node-sass -watch sass/main.scss -o css/style.css",
+    "deploy": "gh-pages -d app"
+  },
+  "author": "Przemysław Krogulski",
+  "license": "ISC",
+  "homepage": "http://przemar5.github.io/portfolio",
+  "dependencies": {
+    "node-sass": "^4.14.1",
+    "sass": "^1.26.10",
+    "sass-watch": "^0.1.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Przemar5/Portfolio.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Przemar5/Portfolio/issues"
+  },
+  "homepage": "https://github.com/Przemar5/Portfolio#readme"
+}
