@@ -16,9 +16,7 @@ function dd($data) {
 try {
 	$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 	$dotenv->load();
-} catch (\Exception $e) {
-	//
-}
+} catch (\Exception $e) {}
 
 $mailer = new Mailjet\Client($_ENV['MAILJET_APIKEY'], $_ENV['MAILJET_APISECRET'], true, ['version' => 'v3.1']);
 
@@ -50,28 +48,10 @@ if ($_POST) {
 	];
 
 	$response = $mailer->post(Mailjet\Resources::$Email, ['body' => $body]);
-	if ($response->success()) {
-		dd($response->getData());
+	if (strtolower($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '') === 'xmlhttprequest') {
+		echo json_encode(['status' => $response->success() ? 'success' : 'failure']);
+		exit;
 	}
-	dd($_ENV);
-	dd($response);
-
-	// try {
-	// 	$ch = curl_init('https://api.mailjet.com/v3.1/send');
-	// 	curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
-	//     curl_setopt($ch, CURLOPT_HEADER, 1);
-	//     curl_setopt($ch, CURLOPT_USERPWD, $_ENV['MAILJET_APIKEY'] . ':' . $_ENV['MAILJET_APISECRET']);
-	// 	curl_setopt($ch, CURLOPT_POST, 1);
-	// 	curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($body));
-	// 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	// 	$server_output = curl_exec($ch);
-	// 	curl_close($ch);
-
-	// 	dd($server_output);
-	// 	// dd(123);
-	// } catch (\Exception $e) {
-	// 	dd($e);
-	// }
 }
 
 ?><!DOCTYPE html>
@@ -293,7 +273,7 @@ if ($_POST) {
 						Contact
 					</h2>
 
-					<form class="contact__form" method="post">
+					<form id="contactForm" class="contact__form" method="post">
 						<label class="contact__form-control contact__form-control--nam animation--fade-in">
 							<input type="text" class="contact__input" name="name" placeholder/>
 							<span class="contact__input-placeholder">Name</span>
