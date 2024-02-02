@@ -2,25 +2,14 @@
 
 require 'vendor/autoload.php';
 
-function dump($data) {
-	echo '<pre>';
-	var_dump($data);
-	echo '</pre>';
-}
-
-function dd($data) {
-	dump($data);
-	die;
-}
-
 try {
 	$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 	$dotenv->load();
 } catch (\Exception $e) {}
 
-$mailer = new Mailjet\Client($_ENV['MAILJET_APIKEY'], $_ENV['MAILJET_APISECRET'], true, ['version' => 'v3.1']);
-
 if ($_POST) {
+	$mailer = new Mailjet\Client($_ENV['MAILJET_APIKEY'], $_ENV['MAILJET_APISECRET'], true, ['version' => 'v3.1']);
+
 	$data = [
 		'name' => $_POST['name'],
 		'email' => $_POST['email'],
@@ -71,9 +60,6 @@ if ($_POST) {
 		<!-- jQuery -->
 		<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
-		<script src="js/animation.js" defer></script>
-		<script src="js/navigation.js" defer></script>
-		<script src="js/sendMail.js" defer></script>
 		<script src="js/main.js" defer></script>
 
 		<!-- Links -->
@@ -81,7 +67,7 @@ if ($_POST) {
 		<link href="favicon.ico" rel="icon">
 
 		<!-- Custom styles -->
-		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/main.css">
 	</head>
 	<body>
 		<!-- Navigation -->
@@ -152,17 +138,17 @@ if ($_POST) {
 								</h3>
 
 								<p class="about__article-paragraph">
-									I am selfthaught programmer from about 3 years. From 2 years also selfthaught full stack developer. I've been also interested in web security and design.
+									I am selfthaught programmer from about 4 and half years or more. From about 3 years also selfthaught full stack developer. I'm interested in problem solving (mostly intellectual, related to how something works), riddles, psychology and philosophy. I've been also interested in web security, design, math and solving problems from programming competitions.
 								</p>
 							</article>
 
 							<article class="about__article animation--fade-in">
 								<h3 class="about__article-header">
-									What I do?
+									What do I do?
 								</h3>
 
 								<p class="about__article-paragraph">
-									I program websites in PHP and Javascript. I have some experience with Laravel, little experience Symfony and Wordpress.
+									I program websites in PHP and Javascript. I have much experience with Symfony and some with Laravel. I also had done projects in more than 10 programming languages, including Typescript, Java, Kotlin, C, Haskell, Go, Prolog and Erlang. I have used many tools and technologies.
 								</p>
 							</article>
 						</div>
@@ -189,7 +175,7 @@ if ($_POST) {
 										'Python' => 60,
 										'Kotlin' => 60,
 										'Java' => 60,
-										'UI (HTML, CSS)' => 80,
+										'HTML & CSS' => 80,
 									];
 									foreach ($skills as $skill => $value):
 									?>
@@ -348,7 +334,8 @@ if ($_POST) {
 				</div>
 
 				<div class="footer__footprint">
-					Przemysław Krogulski &copy; <time datetime="<?= date('Y'); ?>"><?= date('Y'); ?></time>
+					<span>Przemysław Krogulski</span>
+					<span>&copy; <time datetime="<?= date('Y'); ?>"><?= date('Y'); ?></time></span>
 				</div>
 			</div>
 		</footer>
