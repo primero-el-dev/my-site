@@ -35,16 +35,50 @@ const stringifyRGBA = function (r, g, b, a) {
 	return 'rgba('+r.toString()+','+g.toString()+','+b.toString()+','+a.toString()+')';
 }
 
-let Circle = function (x, y) {
-	this.x = x
-	this.y = y
-	this.r = 1
-	this.opacity = 1
-	this.color = COLORS[Math.floor(Math.random() * COLORS.length) % COLORS.length]
 
-	console.log(this.color)
+const DEFAULT_UPDATE_PERIOD_IN_MILLIS = 200
 
-	this.render = function () {
+class Shape {
+	static objects = []
+
+	constructor(x, y, updatePeriodInMillis = DEFAULT_UPDATE_PERIOD_IN_MILLIS) {
+		this.x = x
+		this.y = y
+		this.lastUpdated = Date.now()
+		this.updatePeriodInMillis = updatePeriodInMillis
+	}
+
+	render() {
+		throw Error('Must implement this method.')
+	}
+
+	update() {
+		throw Error('Must implement this method.')
+	}
+
+	isVisible() {
+		throw Error('Must implement this method.')
+	}
+
+	isTimeToDrawWrapper(func, differenceInMillis = null) {
+		let now = Date.now()
+		if (this.lastUpdated + (this.updatePeriodInMillis || differenceInMillis) >= now) {
+			func()
+			this.lastUpdated = now
+		}
+	}
+}
+
+
+class Circle extends Shape {
+	constructor(x, y, updatePeriodInMillis = DEFAULT_UPDATE_PERIOD_IN_MILLIS) {
+		super(x, y, updatePeriodInMillis)
+		this.r = 1
+		this.opacity = 1
+		this.color = COLORS[Math.floor(Math.random() * COLORS.length) % COLORS.length]
+	}
+
+	render() {
 		CTX.beginPath()
 		CTX.fillStyle = stringifyRGBA(this.color[0], this.color[1], this.color[2], this.opacity)
 		// CTX.fillStyle = 'rgb(200,200,200)'
@@ -52,57 +86,88 @@ let Circle = function (x, y) {
 		CTX.fill()
 	}
 
-	this.update = function () {
-		this.r += 1
-		this.opacity -= 0.008
-		this.render()
+	update() {
+		this.isTimeToDrawWrapper(() => {
+			this.r += 1
+			this.opacity -= 0.008
+			this.render()
+		})
 	}
 
-	this.isVisible = function () {
+	isVisible() {
 		return this.opacity > 0
 	}
-
-	return this
-}
-
-let circles = []
-
-
-const drawCircle = (evt) => {
-	let pos = getMousePos(evt)
-	let circle = new Circle(pos.x, pos.y)
-	circle.render()
-	circles.push(circle)
-}
-
-const init = () => {
-
-	window.requestAnimationFrame(draw)
 }
 
 
-const draw = () => {
+class Square extends Shape {
+	constructor(x, y, updatePeriodInMillis = DEFAULT_UPDATE_PERIOD_IN_MILLIS) {
+		super(x, y, updatePeriodInMillis)
+		this.r = 1
+		this.opacity = 1
+		this.color = COLORS[Math.floor(Math.random() * COLORS.length) % COLORS.length]
+	}
+
+	render() {
+		CTX.beginPath()
+		CTX.fillStyle = stringifyRGBA(this.color[0], this.color[1], this.color[2], this.opacity)
+		// CTX.fillStyle = 'rgb(200,200,200)'
+		let halfWidth = Math.floor(this.r / 2)
+		CTX.rect(this.x + offset.x - halfWidth, this.y + offset.y - halfWidth, this.r, this.r)
+		CTX.fill()
+	}
+
+	update() {
+		this.isTimeToDrawWrapper(() => {
+			this.r += 1
+			this.opacity -= 0.008
+			this.render()
+		})
+	}
+
+	isVisible() {
+		return this.opacity > 0
+	}
+}
+
+
+let lastUpdated = 0
+
+const drawShape = shapeClass => event => {
+	let now = Date.now()
+	if (lastUpdated + DEFAULT_UPDATE_PERIOD_IN_MILLIS <= now) {
+		let pos = getMousePos(event)
+		let object = new shapeClass(pos.x, pos.y)
+		object.render()
+		shapeClass.objects.push(object)
+		lastUpdated = now
+	}
+}
+
+const draw = shapeClass => () => {
 	CTX.fillStyle = 'rgb(175, 206, 227)'
 	CTX.fillRect(0, 0, CANVAS.width, CANVAS.height)
 
-	for (let i in circles) {
-		circles[i].update()
-		if (!circles[i].isVisible()) {
-			circles.splice(i, 1)
+	for (let i in shapeClass.objects) {
+		shapeClass.objects[i].update()
+		if (!shapeClass.objects[i].isVisible()) {
+			shapeClass.objects.splice(i, 1)
 		}
 	}
 
-	window.requestAnimationFrame(draw)
+	window.requestAnimationFrame(draw(shapeClass))
 }
 
-init()
 
+let shapeClass = Circle
 
 
 $(document).ready(function () {
 	// Canvas drawing
+	draw(shapeClass)()
+
 	$('canvas').mousemove(function (e) {
-		drawCircle(e)
+		drawShape(shapeClass)(e)
 	})
 
 	$(window).scroll(function (e) {

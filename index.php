@@ -74,6 +74,7 @@ if ($_POST) {
 		<script src="js/animation.js" defer></script>
 		<script src="js/navigation.js" defer></script>
 		<script src="js/sendMail.js" defer></script>
+		<script src="js/main.js" defer></script>
 
 		<!-- Links -->
 		<link href="favicon.ico" rel="apple-touch-icon">
@@ -123,6 +124,7 @@ if ($_POST) {
 			</div>
 		</nav>
 
+			<canvas height="400"></canvas>
 		<!-- Header -->
 		<header id="home">
 			<div id="hero">
@@ -335,6 +337,9 @@ if ($_POST) {
 		<footer class="footer">
 			<div class="wrapper">
 				<div class="socials">
+					<a class="social social--github" href="https://github.com/primero-el-dev" target="_blank">
+						<span class="fab fa-github"></span>
+					</a>
 					<a class="social social--github" href="https://github.com/Przemar5" target="_blank">
 						<span class="fab fa-github"></span>
 					</a>
