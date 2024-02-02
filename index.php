@@ -124,7 +124,6 @@ if ($_POST) {
 			</div>
 		</nav>
 
-			<canvas height="400"></canvas>
 		<!-- Header -->
 		<header id="home">
 			<div id="hero">
