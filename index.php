@@ -243,12 +243,6 @@ if ($_POST) {
 								'header' => 'Mnemono',
 								'description' => "Android app for memory training designed and made in Kotlin made by myself alone (with help of the internet).",
 							],
-							[
-								'link' => 'https://programming-forum.herokuapp.com',
-								'image' => 'images/programming-forum.png',
-								'header' => 'Programming forum',
-								'description' => "Forum made with Symfony 5, jQuery and SASS",
-							],
 						];
 
 						foreach ($projects as $project):
