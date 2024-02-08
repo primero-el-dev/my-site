@@ -479,18 +479,33 @@ textarea {
     .project__caption:hover {
       opacity: 1; }
   .project__header {
-    font-size: 3rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem; }
+    font-size: 2rem;
+    margin-top: 1rem; }
   .project__paragraph {
-    font-size: 1.75rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem; }
+    font-size: 1.5rem;
+    margin: 1rem;
+    text-align: center; }
 
 @media screen and (max-width: 560px) {
   .project {
     margin-left: 0 !important;
     margin-right: 0 !important; } }
+
+@media screen and (max-width: 380px) {
+  .project__header {
+    font-size: 1.5rem;
+    margin-top: .5rem; }
+  .project__paragraph {
+    font-size: 1.25rem;
+    margin: .5rem; } }
+
+@media screen and (max-width: 280px) {
+  .project__header {
+    font-size: 1.25rem;
+    margin-top: .25rem; }
+  .project__paragraph {
+    font-size: 1rem;
+    margin: .25rem; } }
 
 #contact > .section__header {
   display: flex; }

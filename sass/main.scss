@@ -731,19 +731,14 @@ textarea {
 	}
 
 	&__header {
-		font-size: 3rem;
-		margin: {
-			top: 1rem;
-			bottom: 1rem;
-		}
+		font-size: 2rem;
+		margin-top: 1rem;
 	}
 
 	&__paragraph {
-		font-size: 1.75rem;
-		margin: {
-			top: 1rem;
-			bottom: 1rem;
-		}
+		font-size: 1.5rem;
+		margin: 1rem;
+		text-align: center;
 	}
 }
 
@@ -752,6 +747,34 @@ textarea {
 		margin: {
 			left: 0 !important;
 			right: 0 !important;
+		}
+	}
+}
+
+@media screen and (max-width: 380px) {
+	.project {
+		&__header {
+			font-size: 1.5rem;
+			margin-top: .5rem;
+		}
+
+		&__paragraph {
+			font-size: 1.25rem;
+			margin: .5rem;
+		}
+	}
+}
+
+@media screen and (max-width: 280px) {
+	.project {
+		&__header {
+			font-size: 1.25rem;
+			margin-top: .25rem;
+		}
+
+		&__paragraph {
+			font-size: 1rem;
+			margin: .25rem;
 		}
 	}
 }

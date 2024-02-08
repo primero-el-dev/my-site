@@ -130,7 +130,7 @@ if ($_POST) {
 
 					<div class="about__content">
 						<div class="about__left">
-							<img src="images/me-2.png" class="about__photo animation--fade-in" loading="lazy" alt="Me">
+							<img src="images/me_new_4.png" class="about__photo animation--fade-in" loading="lazy" alt="Me">
 
 							<article class="about__article animation--fade-in">
 								<h3 class="about__article-header">
@@ -207,23 +207,41 @@ if ($_POST) {
 					<div class="projects__container">
 						<?php
 						$projects = [
-							[						
-								'link' => 'https://your-fresh-news-app.onrender.io',
+							[
+								'link' => 'https://xmltoeu.pl/',
+								'image' => 'images/xmltoeu.png',
+								'header' => 'Xmltoeu subscription',
+								'description' => "Web service for automatization of setting prices and types of products on websites like allegro.pl for warehouses. I was working on a system of subscription and payment for this service commercially.",
+							],
+							[
+								'link' => 'https://e-cargo.edu.pl/login',
+								'image' => 'images/e-cargo.png',
+								'header' => 'E-cargo',
+								'description' => "Website for online courses for drivers. I was working on maintaining this site and creating new features commercially.",
+							],
+							[
+								'link' => 'https://caterings.pl/',
+								'image' => 'images/caterings.png',
+								'header' => 'Caterings',
+								'description' => "Online catering system. I was working on maintaining a system and creating new small features commercially.",
+							],
+							[
+								'link' => 'https://your-fresh-news-app.onrender.com',
 								'image' => 'images/yourfreshnews.png',
 								'header' => 'Fresh News',
-								'description' => "News site made with Laravel 7, jQuery and SASS.",
+								'description' => "News site made with Laravel 7, jQuery and SASS which was designed and made by myself alone (with help of the internet).",
 							],
 							[
 								'link' => 'https://primero-el-dev.github.io/edraw',
 								'image' => 'images/edraw.png',
 								'header' => 'E-draw',
-								'description' => "Simple paint-like SPA app with very advanced customization of drawing tools and option of importing/exporting images."
+								'description' => "Simple paint-like SPA app with very advanced customization of drawing tools and option of importing/exporting images made by myself alone (with help of the internet)."
 							],
 							[
 								'link' => 'https://play.google.com/store/apps/details?id=com.primeroeldev.mnemono',
 								'image' => 'images/mnemono.png',
 								'header' => 'Mnemono',
-								'description' => "Android app for memory training made in Kotlin.",
+								'description' => "Android app for memory training designed and made in Kotlin made by myself alone (with help of the internet).",
 							],
 							[
 								'link' => 'https://programming-forum.herokuapp.com',
