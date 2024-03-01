@@ -232,6 +232,12 @@ if ($_POST) {
 								'description' => "News site made with Laravel 7, jQuery and SASS which was designed and made by myself alone (with help of the internet).",
 							],
 							[
+								'link' => 'https://programming-forum-app-example.onrender.com/',
+								'image' => 'images/programming-forum.png',
+								'header' => 'Programming forum (portfolio project)',
+								'description' => "Simple forum made with Symfony 5, PostgreSQL and Docker. Made by myself alone (with help of the internet).",
+							],
+							[
 								'link' => 'https://primero-el-dev.github.io/edraw',
 								'image' => 'images/edraw.png',
 								'header' => 'E-draw',
